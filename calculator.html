@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Document</title>
+
+    <style type="text/css">
+        .main {
+            width: 600px;
+            height: 800px;
+            border: solid;
+            border-color: green;
+        }
+        
+        .myTopbar {
+            color: orange;
+            width: 600px;
+            height: 100px;
+            font-family: initial;
+            font-size: 30px;
+            text-align: center;
+        }
+        
+        .myQuiz {
+            color: blue;
+            width: 600px;
+            height: 150px;
+            font-size: 50px;
+            text-align: center;
+        }
+        
+        .myPlay {
+            color: black;
+            width: 600px;
+            height: 550px;
+            text-align: center;
+        }
+        
+        button {
+            width: 100px;
+            height: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 5px;
+        }
+        
+        button:active {
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        
+        button:focus {
+            outline: none;
+        }
+        
+        .answer {
+            color: grey;
+            height: 150px;
+            line-height: 150px;
+            font-size: 50px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div>
+            <h1 class="myTopbar" id="message">Quiz Starts!</h1>
+        </div>
+
+        <div id="calculate" style="text-align: center;">
+            <span class="myQuiz" id="mathQuiz">3 + 2 =</span>
+            <span class="answer" id="quizAns"></span>
+        </div>
+        <div class="myPlay" id="myPlay">
+            <div>
+                <button id="1" onclick="buttonPressed(this.id)" style="background: url(images/number1.png); background-size: contain;"></button>
+                <button id="2" onclick="buttonPressed(this.id)" style="background: url(images/number2.png); background-size: contain;"></button>
+                <button id="3" onclick="buttonPressed(this.id)" style="background: url(images/number3.png); background-size: contain;"></button>
+            </div>
+            <div>
+                <button id="4" onclick="buttonPressed(this.id)" style="background: url(images/number4.png); background-size: contain;"></button>
+                <button id="5" onclick="buttonPressed(this.id)" style="background: url(images/number5.png); background-size: contain;"></button>
+                <button id="6" onclick="buttonPressed(this.id)" style="background: url(images/number6.png); background-size: contain;"></button>
+            </div>
+            <div>
+                <button id="7" onclick="buttonPressed(this.id)" style="background: url(images/number7.png); background-size: contain;"></button>
+                <button id="8" onclick="buttonPressed(this.id)" style="background: url(images/number8.png); background-size: contain;"></button>
+                <button id="9" onclick="buttonPressed(this.id)" style="background: url(images/number9.png); background-size: contain;"></button>
+            </div>
+            <div>
+                <button id="0" onclick="buttonPressed(this.id)" style="background: url(images/number0.png); background-size: contain;text-align: center;"></button>
+                <button id="enter" onclick="checkAnswer()" style="background: url(images/enter.png); background-size:contain"></button>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script>
+        var n1;
+        var n2;
+        var result;
+        var userInput = "";
+
+        newQuiz();
+
+        function buttonPressed(buttonID) {
+            userInput = userInput + buttonID;
+            document.getElementById("mathQuiz").innerHTML = n1 + "+" + n2 + "=";
+            document.getElementById("quizAns").innerHTML = userInput;
+        }
+
+
+        function checkAnswer() {
+            result = n1 + n2;
+
+            if (result.toString() == userInput) {
+                userInput = "";
+                document.getElementById("message").innerHTML = "Well done!";
+                document.getElementById("message").style.color = "green";
+                newQuiz();
+            } else {
+                userInput = "";
+                document.getElementById("message").innerHTML = "Sorry! Wrong!";
+                document.getElementById("message").style.color = "red";
+
+            }
+        }
+
+        function newQuiz() {
+            n1 = Math.floor((Math.random() * 19) + 1);
+            n2 = Math.floor((Math.random() * 19) + 1);
+            document.getElementById("mathQuiz").innerHTML = n1 + "+" + n2 + "=?";
+            document.getElementById("quizAns").innerHTML = userInput;
+
+        }
+    </script>
+</body>
+
+</html>
